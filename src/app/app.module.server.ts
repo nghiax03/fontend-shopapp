@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { ServerModule } from '@angular/platform-server';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppModule } from './app.module';
 import { HomeComponent } from './home/home.component';
 import { OrderComponent } from './order/order.component';
@@ -14,7 +14,8 @@ import { DetailProductComponent } from './detail-product/detail-product.componen
   imports: [
     AppModule,
     ServerModule,
+    HttpClientModule
   ],
-  bootstrap: [DetailProductComponent],
+  bootstrap: [LoginComponent],
 })
 export class AppServerModule {}

@@ -16,6 +16,6 @@ import { DetailProductComponent } from './component/detail-product/detail-produc
     ServerModule,
     HttpClientModule
   ],
-  bootstrap: [OrderConfirmComponent],
+  bootstrap: [OrderComponent],
 })
 export class AppServerModule {}

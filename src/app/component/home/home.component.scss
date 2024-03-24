@@ -1,74 +1,126 @@
-
-.intro-section{
+.intro-section {
     text-align: center;
     color: white;
     padding: 20px;
 }
-.search-box{
+
+.search-box {
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 20px;
 }
-.product-category{
+
+.product-category {
     width: 200px;
 }
-.search-input{
+
+.search-input {
     width: 300px;
-    background-color: rgb(19,23,42);
+    background-color: rgb(19, 23, 42);
     margin-right: 10px;
     border-color: rgba(255, 255, 255, 0.5);
-    color: white                                                                                                                                                                            ;
+    color: white;
 }
-.form-control{
+
+.form-control {
     background-color: transparent;
     color: white;
 }
-.form-control::placeholder{
+
+.form-control::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: rgba(255, 255, 255, 0.5);
     opacity: 1;
+    /* Firefox */
 }
-.form-control:-ms-input-placeholder{
-    /*express bowser*/
+
+.form-control:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
     color: rgba(255, 255, 255, 0.5);
 }
-.form-control:-ms-input-placeholder{
+
+.form-control::-ms-input-placeholder {
+    /* Microsoft Edge */
     color: rgba(255, 255, 255, 0.5);
 }
-.product-item{
+
+.product-item {
     background-color: rgb(19, 23, 42);
-    border: 1px solid rgb(35 ,39, 61);
+
     border-radius: 20px;
     padding: 20px;
     margin-bottom: 20px;
 }
-.product-image{
+
+.product-image {
     width: 100%;
     height: auto;
     margin-bottom: 10px;
-    border-radius: 20px;
 }
-.product-name{
+
+.product-name {
     color: white;
 }
-.product-description{
+
+.product-description {
     color: rgb(173, 178, 203);
 }
-.product-warranty{
+
+.product-warranty {
     color: rgb(242, 126, 212);
 }
-.product-price{
+
+.product-price {
     color: white;
 }
-.product-rating{
+
+.product-rating {
     color: #FFD700;
     margin-top: 10px;
 }
-.product-actions{
+
+.product-actions {
     display: flex;
     justify-content: center;
     margin-top: 20px;
 }
-.space-x{
+
+.space-x {
     margin: 0 5px;
+    /*margin-top, margin-right, margin-bottom, margin-left*/
+}
+
+.page-number {
+    cursor: pointer;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    margin: 0 2px;
+    border-radius: 3px;
+}
+
+.page-number.active {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+}
+  
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+.pagination .page-number {
+    cursor: pointer;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    margin: 0 2px;
+    border-radius: 3px;
+    background-color: rgba(19, 23, 42, 0.5); /* Màu nền tương đồng */
+    color: white; /* Màu chữ trắng */
+}
+
+.pagination .page-number.active {
+    background-color: #007bff; /* Màu nền cho trang hiện tại */
+    border-color: #007bff;
 }

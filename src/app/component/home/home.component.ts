@@ -1,11 +1,11 @@
-import { Component, OnInit } from "@angular/core";
-import { Product } from "../../models/product";
-import { Category } from "../../models/category";
-import { ProductService } from "../../service/product.service";
-import { CategoryService } from "../../service/category.service";
-import { Router } from "@angular/router";
-import { environment } from "../../environments/environment";
+import { Component, OnInit } from '@angular/core';
+import { Product } from '../../models/product';
+import { Category } from '../../models/category';
 
+import { Router } from '@angular/router';
+import { ProductService } from '../../service/product.service';
+import { CategoryService } from '../../service/category.service';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    private categoryService: CategoryService, 
+    private categoryService: CategoryService,    
     private router: Router
     ) {}
 

@@ -8,7 +8,9 @@ import {LoginResponse} from '../../responses/user/login.response';
 import { TokenService } from '../../service/token.service';
 import { RoleService } from '../../service/role.service';
 import { Role } from '../../models/role';
-
+import { error, timeStamp } from 'console';
+import { UserResponse } from '../../responses/user/user.response';
+import { timestamp } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -17,13 +19,13 @@ import { Role } from '../../models/role';
 })
 export class LoginComponent {
   @ViewChild('loginForm') loginForm!: NgForm;
-  phoneNumber: string = '012323456';
+  phoneNumber: string = '0987660066';
   password: string = '12345';
 
   roles: Role[] = [];
   rememberMe: boolean = true;
   selectedRole: Role | undefined;
-
+  userResponse?: UserResponse;
 
   onPhoneNumberChange() {
     console.log(`Phone typed: ${this.phoneNumber}`)
@@ -68,9 +70,29 @@ export class LoginComponent {
         debugger;
         const { token } = response;
         if (this.rememberMe) {
+          debugger
           this.tokenService.setToken(token);
+          this.userService.getUserDetail(token).subscribe({
+            next: (response: any) => {
+              debugger;
+              this.userResponse = {
+                ...response,
+                data_of_birth: new Date(response.data_of_birth),
+              };
+              this.userService.saveUserResponseToLocalStorage(this.userResponse);
+              this.router.navigate(['/']);
+            },
+            complete: () => {
+              debugger;
+            },
+            error : (error: any) => {
+              debugger
+              alert(error.error.message);
+            }
+          })
+
         }                
-        //this.router.navigate(['/login']);
+        
       },
       complete: () => {
         debugger;

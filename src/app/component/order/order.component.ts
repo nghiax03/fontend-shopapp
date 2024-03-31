@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Product } from '../../models/product';
 import { OrderDTO } from '../../dtos/order/order.dto';
 import { CartService } from '../../service/cart.service';
@@ -16,7 +16,7 @@ import { Order } from '../../models/order';
   templateUrl: './order.component.html',
   styleUrl: './order.component.scss'
 })
-export class OrderComponent {
+export class OrderComponent implements OnInit{
   orderForm: FormGroup;
   cartItems: { product: Product, quantity: number }[] = [];
   couponCode: string = '';
@@ -41,6 +41,7 @@ export class OrderComponent {
     private orderService: OrderService,
     private tokenService: TokenService,
     private formBuilder: FormBuilder,
+    private activatedRoute: ActivatedRoute,
     private router: Router,
   ){
     this.orderForm = this.formBuilder.group({
@@ -55,41 +56,42 @@ export class OrderComponent {
   }
 
   ngOnInit(): void{
+    debugger;
+    // this.cartService.clearCart();
+    this.orderData.user_id = this.tokenService.getUserId();
+    debugger;
+    const cart = this.cartService.getCart();
+    const productIds = Array.from(cart.keys());
+
     debugger
-    if(!this.tokenService.getUserInfoFromToken() ||
-          this.tokenService.isTokenExpired()){
-            this.router.navigate(['/']);
+    if(productIds.length === 0){
+      return;
+    }
+    this.productService.getProductByIds(productIds).subscribe({
+      next: (products) => {
+        debugger
+        this.cartItems = productIds.map((productId) => {
+          debugger
+          const product = products.find((p) => p.id === productId);
+          if(product){
+            product.thumbnail = `${environment.apiBaseUrl}/products/images/${product.thumbnail}`;
           }
-          debugger
-      const cart = this.cartService.getCart();
-      const productIds = Array.from(cart.keys());
-      
-      debugger
-      this.productService.getProductByIds(productIds).subscribe({
-        next: (products) => {
-          debugger
-          this.cartItems = productIds.map((productId) => {
-            debugger
-            const product = products.find((p) => p.id == productId);
-            if(product){
-              product.thumbnail = `${environment.apiBaseUrl}/products/images/${product.thumbnail}`;
-            }
-            return{
-              product: product!,
-              quantity: cart.get(productId)!
-            };
-          });
-          console.log(',,,');
-        },
-        complete: () => {
-          debugger;
-          this.calculateTotal();
-        },
-        error: (error: any) => {
-          debugger;
-          console.error('Error fetching detail: ', error);
-        }
-      });
+          return {
+            product: product!,
+            quantity: cart.get(productId)!
+          };
+        });
+        console.log('hello');
+      },
+      complete: () => {
+        debugger;
+        this.calculateTotal()
+      },
+      error: (error: any) => {
+        debugger;
+        console.error('Error fetching detail: ', error);
+      }
+    });
   }
 
   placeOrder(){
@@ -107,8 +109,9 @@ export class OrderComponent {
       this.orderService.placeOrder(this.orderData).subscribe({
         next: (response: Order) => {
           debugger;
-          console.log('Đặt hàng thành công');
-          this.router.navigate(['/orders/', response.id]);
+          alert('Đặt hàng thành công');
+          this.cartService.clearCart();
+          this.router.navigate(['/']);
         },
         complete: () => {
           debugger;
@@ -116,7 +119,7 @@ export class OrderComponent {
         },
         error: (error: any) => {
           debugger;
-          console.error('Lỗi khi đặt hàng: ', error);
+        alert(`Lỗi khi đặt hàng: ${error}`);
         },
       });
     }

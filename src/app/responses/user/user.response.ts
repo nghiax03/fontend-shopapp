@@ -5,7 +5,7 @@ export interface UserResponse{
     fullname: string,
     address: string,
     is_active: boolean,
-    data_of_birth: Date,
+    date_of_birth: Date,
     facebook_account_id: number,
     google_account_id: number,
     role: Role;

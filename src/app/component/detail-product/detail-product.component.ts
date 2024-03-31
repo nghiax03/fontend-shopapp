@@ -23,7 +23,7 @@ export class DetailProductComponent implements OnInit {
     private productService: ProductService,
     private cartService: CartService,
     // private categoryService: CategoryService,
-    // private router: Router,
+    private router: Router,
     // private activatedRoute: ActivatedRoute,
     ) {
       
@@ -113,6 +113,6 @@ export class DetailProductComponent implements OnInit {
     }
     
     buyNow(): void {
-      // Thực hiện xử lý khi người dùng muốn mua ngay
+      this.router.navigate(['/orders']);
     }    
 }

@@ -6,13 +6,15 @@ import { OrderConfirmComponent } from './component/order-confirm/order-confirm.c
 import { AppComponent } from './app/app.component';
 import { HeaderComponent } from './component/header/header.component';
 import { HomeComponent } from './component/home/home.component';
+import { AppRoutingModule } from './service/app-routing.module';
 
 
 @NgModule({
   imports: [
     AppModule,
     ServerModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule
   ],
   bootstrap: [AppComponent],
 })

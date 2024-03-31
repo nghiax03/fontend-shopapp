@@ -19,8 +19,8 @@ import { timestamp } from 'rxjs';
 })
 export class LoginComponent {
   @ViewChild('loginForm') loginForm!: NgForm;
-  phoneNumber: string = '0987660066';
-  password: string = '12345';
+  phoneNumber: string = '';
+  password: string = '';
 
   roles: Role[] = [];
   rememberMe: boolean = true;
@@ -80,7 +80,12 @@ export class LoginComponent {
                 data_of_birth: new Date(response.data_of_birth),
               };
               this.userService.saveUserResponseToLocalStorage(this.userResponse);
-              this.router.navigate(['/']);
+              if(this.userResponse?.role.name == 'admin'){
+                this.router.navigate(['/admin']);
+              }else if(this.userResponse?.role.name=='user'){
+                this.router.navigate(['/']);
+              }
+              
             },
             complete: () => {
               debugger;

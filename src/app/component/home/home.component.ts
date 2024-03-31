@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
   products: Product[] = [];
   categories: Category[] = []; // Dữ liệu động từ categoryService
   selectedCategoryId: number  = 0; // Giá trị category được chọn
-  currentPage: number = 1;
+  currentPage: number = 0;
   itemsPerPage: number = 12;
   pages: number[] = [];
   totalPages:number = 0;
@@ -97,6 +97,6 @@ export class HomeComponent implements OnInit {
   onProductClick(productId: number) {
     debugger
     // Điều hướng đến trang detail-product với productId là tham số
-    this.router.navigate(['/detail-product', productId]);
+    this.router.navigate(['/products', productId]);
   }
 }

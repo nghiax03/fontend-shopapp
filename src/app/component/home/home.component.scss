@@ -1,3 +1,5 @@
+@import '../../styles/shared-styles.scss';
+
 .intro-section {
     text-align: center;
     color: white;
@@ -103,6 +105,15 @@
     background-color: #007bff;
     color: #fff;
     border-color: #007bff;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn.btn-primary{
+    margin-left: 10px;
 }
   
 .pagination {

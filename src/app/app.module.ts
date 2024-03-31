@@ -14,6 +14,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { OrderConfirmComponent } from './component/order-confirm/order-confirm.component';
 import { AppComponent } from './app/app.component';
 import { AppRoutingModule } from './service/app-routing.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { UserProfileComponent } from './component/user-profile/user-profile.component';
+import { AdminComponent } from './admin/admin.component';
+import { OrdersComponent } from './admin/orders/orders.admin.component';
+import { PoductAdminComponent } from './admin/product/poduct.admin.component';
+import { CategoryAdminComponent } from './admin/category/category.admin.component';
 
 @NgModule({
   declarations: [
@@ -25,14 +31,20 @@ import { AppRoutingModule } from './service/app-routing.module';
           LoginComponent,
           RegisterComponent,
           DetailProductComponent,
-          AppComponent
+          AppComponent,
+          UserProfileComponent,
+          AdminComponent,
+          OrdersComponent,
+          PoductAdminComponent,
+          CategoryAdminComponent,
   ],
   imports: [
     ReactiveFormsModule,
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule
   ],
   providers: [
     {
